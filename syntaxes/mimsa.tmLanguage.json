@@ -1,0 +1,105 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Mimsa",
+  "patterns": [
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#paren-expression"
+    },
+    {
+      "include": "#expression"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#type-constructor"
+    }
+  ],
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.mimsa",
+          "match": "\\b(if|case|then|else|of)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "keyword.storage.type.mimsa",
+          "match": "\\b(let|infix)\\b"
+        }
+      ]
+    },
+    "expression": {
+      "patterns": [
+        { "include": "#keywords" },
+        { "include": "#strings" },
+        { "include": "#numbers" },
+        { "include": "#operators" },
+        { "include": "#type-constructor" }
+      ]
+    },
+    "paren-expression": {
+      "begin": "\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": { "name": "punctuation.paren.open.mimsa" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.paren.close.mimsa" }
+      },
+      "name": "expression.group.mimsa",
+      "patterns": [{ "include": "#expression" }]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.mimsa",
+          "match": "\\b(0|1|2|3|4|5|6|7|8|9)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "constant.operator.mimsa",
+          "match": "\\b(?<!=)=(?!=)\\b"
+        }
+      ]
+    },
+    "type-constructor": {
+      "patterns": [
+        {
+          "name": "entity.name.type.mimsa",
+          "match": "\\b[A-Z][a-z]+\\b"
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.mimsa",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.mimsa",
+          "match": "\\\\."
+        }
+      ]
+    }
+  },
+  "scopeName": "source.mimsa"
+}
